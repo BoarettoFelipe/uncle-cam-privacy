@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Privacy Policy for Uncle Cam, a Windows webcam application using Snap Camera Kit and local WebRTC video for OBS Studio.">
+  <title>Uncle Cam — Privacy Policy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="masthead">
+    <div class="brand"><span class="mark" aria-hidden="true">U</span><span>Uncle Cam</span></div>
+    <span class="badge">Privacy Policy</span>
+  </header>
+  <div class="layout">
+    <nav class="toc" aria-label="Policy sections">
+      <p>On this page</p>
+      <a href="#overview">Overview</a>
+      <a href="#data">Data we process</a>
+      <a href="#snap">Snap Camera Kit</a>
+      <a href="#obs">Local OBS stream</a>
+      <a href="#storage">Local storage</a>
+      <a href="#sharing">Sharing and security</a>
+      <a href="#controls">Retention and controls</a>
+      <a href="#children">Children</a>
+      <a href="#changes">Changes and contact</a>
+    </nav>
+    <main id="content">
+      <div class="intro">
+        <p class="eyebrow">WINDOWS DESKTOP APPLICATION</p>
+        <h1>Uncle Cam — Privacy Policy</h1>
+        <p class="lead">How Uncle Cam handles webcam video, local preferences, and Snap Camera Kit requests.</p>
+        <p class="updated">Last updated: November 4, 2026</p>
+      </div>
+
+      <section id="overview">
+        <h2>1. Overview</h2>
+        <p>Uncle Cam is a Windows desktop application for personal, non-commercial use. It lets a user capture a webcam, apply local color adjustments and authorized augmented reality Lenses through Snap Camera Kit Web, preview the result, and send the resulting video to OBS Studio on the same computer. Uncle Cam does not automatically publish video to Snapchat or any streaming platform.</p>
+      </section>
+
+      <section id="data">
+        <h2>2. Webcam and information we process</h2>
+        <p>When you start the camera, Uncle Cam asks Windows for webcam access through your browser engine and captures video frames with <code>getUserMedia</code>. The current application requests video only, with audio disabled. Frames are processed in memory for the preview, local filters, Camera Kit Lenses when selected, and the OBS video stream. Uncle Cam does not include a feature to record or upload webcam footage and does not intentionally save webcam frames, facial images, facial templates, or videos to its preferences file.</p>
+        <p>Camera device identifiers, selected Lens identifiers, Lens names and thumbnail URLs, local filter parameters, favorites, recent selections with timestamps and use counts, and interface preferences may be processed to provide the features you select. Lens effects may analyze facial features in the Camera Kit runtime while rendering; Uncle Cam does not extract or store a separate face model.</p>
+      </section>
+
+      <section id="snap">
+        <h2>3. Snap Camera Kit and third-party services</h2>
+        <p>If you enter a Camera Kit API Token or use a Snap Lens, Uncle Cam's renderer connects to Snap-operated API and content delivery services to initialize Camera Kit, authorize access, retrieve configuration, Lens metadata, and Lens assets, and render the selected Lens. The token is provided to the Camera Kit SDK for authorization. Requests to Snap may expose technical information such as your IP address, token, device or browser information, Lens identifiers, usage and performance data to Snap. Snap's handling of data through its SDK and services is governed by its own terms and privacy documentation.</p>
+        <p>Uncle Cam does not use Snap services when you only use the webcam with local color filters and do not initialize Camera Kit. The application does not deliberately send the local OBS stream or recordings to Snap. The Camera Kit SDK can make its own service requests; we do not claim that all Camera Kit processing or diagnostic data remains on your computer.</p>
+        <p>Read <a href="https://www.snap.com/privacy/privacy-policy" rel="noopener noreferrer">Snap's Privacy Policy</a> and <a href="https://developers.snap.com/snap-kit/app-review/privacy-and-data" rel="noopener noreferrer">Snap Kit privacy and data guidance</a>. Snap's Camera Kit terms notice may appear in the SDK before a Lens can be used.</p>
+      </section>
+
+      <section id="obs">
+        <h2>4. Local transmission to OBS Studio</h2>
+        <p>Uncle Cam hosts a receiver page at <code>http://localhost:17843/receiver</code> for an OBS Browser Source. A local WebSocket exchanges connection messages, and WebRTC sends the video from the final preview canvas. The WebRTC configuration has no STUN or TURN servers. The server binds to the computer's loopback interface and is not intended to be reachable from other computers on the network. OBS receives video only and does not request direct webcam access.</p>
+        <p>Any application or person with access to your Windows session who can open this local receiver while Uncle Cam is streaming may be able to view the video. If you stream or record through OBS or another application, that application's settings and destination determine what happens to the video outside Uncle Cam.</p>
+      </section>
+
+      <section id="storage">
+        <h2>5. Local settings and credentials</h2>
+        <p>Uncle Cam saves a JSON preferences file named <code>uncle-cam-state.json</code> in Electron's per-user application data directory. It can contain the last camera identifier, Lens catalog and IDs, favorites, recent Lens and filter usage, custom filter presets and parameters, the recent-history limit, and the last selected screen. This file stays on your computer unless you or another program copy or synchronize it.</p>
+        <p>The Camera Kit API Token is entered into a password field and held in the running renderer's memory. Uncle Cam does not write it to that preferences file and masks the entered token in its own diagnostic messages. You must enter it again after restarting the app. Diagnostics may be shown in the interface and developer console but the app does not implement a separate telemetry or analytics service or a persistent diagnostic log. Operating system and embedded browser components may maintain their own caches and logs.</p>
+      </section>
+
+      <section id="sharing">
+        <h2>6. Sharing and security</h2>
+        <p>Uncle Cam shares the live video with local OBS receivers you configure. Camera Kit requests are sent to Snap when its features are used. Uncle Cam does not operate a separate account system, advertising network, analytics endpoint, or developer-hosted upload server for your video.</p>
+        <p>The application restricts its local server to loopback, uses a restrictive Content Security Policy, and keeps the Electron renderer sandboxed with Node.js integration disabled. These controls reduce exposure but cannot protect against every program running under your Windows account. Keep Windows, OBS, and Uncle Cam up to date and close the camera when you are finished.</p>
+      </section>
+
+      <section id="controls">
+        <h2>7. Retention, deletion, and your controls</h2>
+        <p>Video frames remain in memory while the camera and related rendering or streaming sessions are active. Stop the camera or close Uncle Cam to end capture and the local stream. Uncle Cam does not set a time limit for saved preferences: they remain until you remove them. You can clear recent history from the Recent screen and remove saved Lenses, favorites, or custom presets in the application. To remove all locally saved preferences, close Uncle Cam and delete <code>uncle-cam-state.json</code> from Uncle Cam's application data directory. The API Token is cleared when the application closes.</p>
+        <p>You can deny or revoke webcam access in Windows privacy settings, use Uncle Cam without Camera Kit, or stop using OBS. For data handled by Snap, see <a href="https://www.snap.com/privacy/privacy-policy" rel="noopener noreferrer">Snap's privacy policy</a> for its retention practices and applicable privacy choices. For data retained by OBS, a streaming service, or your own recordings, use that service or application's controls.</p>
+      </section>
+
+      <section id="children">
+        <h2>8. Children</h2>
+        <p>Uncle Cam is intended for adult personal use and is not directed to children. If you believe a child has used the application in a way that raises a privacy concern, contact the project owner using the method below. Snap's own age and consent requirements also apply to Camera Kit.</p>
+      </section>
+
+      <section id="changes">
+        <h2>9. Changes and contact</h2>
+        <p>We may update this policy when the application or third-party integrations change. The date above will reflect the latest revision. For questions about Uncle Cam's privacy practices, <a href="https://github.com/BoarettoFelipe/uncle-cam-privacy/issues/new" rel="noopener noreferrer">open an issue in the policy repository</a>. GitHub issues are public, so do not post API Tokens, webcam footage, or other sensitive details there. You may request a private contact route through an issue without disclosing the details publicly.</p>
+      </section>
+      <footer><span class="mark small" aria-hidden="true">U</span><span>Uncle Cam · Personal desktop camera studio</span><a href="#content">Back to top ↑</a></footer>
+    </main>
+  </div>
+</body>
+</html>
